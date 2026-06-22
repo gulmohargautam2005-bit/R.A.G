@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artisan AI | Creative Intelligence</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@300;400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-surface": "#111c2d",
+                        "on-primary": "#ffffff",
+                        "primary": "#6b38d4",
+                        "on-primary-fixed": "#23005c",
+                        "primary-container": "#8455ef",
+                        "surface-tint": "#6d3bd7",
+                        "surface-container-highest": "#d8e3fb",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#5516be",
+                        "tertiary-fixed-dim": "#ffb2b9",
+                        "on-tertiary-fixed-variant": "#891933",
+                        "on-secondary-fixed": "#001e2f",
+                        "primary-fixed-dim": "#d0bcff",
+                        "primary-fixed": "#e9ddff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "tertiary-fixed": "#ffdadc",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container": "#e7eeff",
+                        "surface": "#f9f9ff",
+                        "on-surface-variant": "#494454",
+                        "on-secondary-container": "#004666",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "outline-variant": "#cbc3d7",
+                        "surface-variant": "#d8e3fb",
+                        "surface-dim": "#cfdaf2",
+                        "inverse-surface": "#263143",
+                        "on-tertiary-fixed": "#400010",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary": "#a63047",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9ff",
+                        "on-background": "#111c2d",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "secondary-fixed": "#c9e6ff",
+                        "secondary": "#006591",
+                        "outline": "#7b7486",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#39b8fd",
+                        "inverse-primary": "#d0bcff",
+                        "tertiary-container": "#c6495e",
+                        "surface-container-high": "#dee8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Sora"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "headline-md": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mesh-gradient {
+            background-color: #f9f9ff;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            /* Adjusted for Light Mode Request */
+            background: radial-gradient(circle at top left, #f3e8ff 0%, transparent 40%),
+                        radial-gradient(circle at top right, #e0f2fe 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, #fdf4ff 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, #fff 0%, transparent 40%),
+                        #f9f9ff;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(107, 56, 212, 0.1);
+        }
+        .user-bubble-gradient {
+            background: linear-gradient(135deg, #6b38d4 0%, #39b8fd 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(107, 56, 212, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md mesh-gradient min-h-screen flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col p-md z-50 bg-surface-container-low/80 dark:bg-surface-dim/80 backdrop-blur-2xl border-r border-primary/10 w-64 hidden md:flex">
+<div class="flex items-center gap-sm mb-lg px-xs">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<div>
+<h1 class="font-display text-headline-md text-primary leading-none">Artisan AI</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold mt-1">Creative Intelligence</p>
+</div>
+</div>
+<button class="w-full py-3 px-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-xl transition-all active:scale-95 mb-lg">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>New Chat</span>
+</button>
+<nav class="flex-1 space-y-2 custom-scrollbar overflow-y-auto">
+<div class="text-[11px] font-bold text-on-surface-variant/40 uppercase tracking-widest px-xs mb-2">Main Menu</div>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl font-bold transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">neurology</span>
+<span class="font-label-md text-label-md">Models</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-primary/5">
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out mb-4" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-md text-label-md">Upgrade Pro</span>
+</a>
+<div class="flex items-center gap-3 px-xs">
+<div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a creative professional in a bright, high-key studio setting. The person has a friendly expression, wearing minimalist modern clothing. The lighting is soft and airy, matching a clean luminous glassmorphism UI aesthetic with subtle pastel highlights in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi2O1iefIeQSAGy7hTBQ2B-fpegkgFd1ESFbJKTOYLJtm29uGIJicIWnuK7Msl97U0U46osDqAaavuU31NgvHCT04RUn6VWZf5sBvKn-GL03mW39ot7bwY45dHrfFtt6e_GpRzxTJ_PCQ6cXlAf1GiL003R0ot86zkPMimXxK-ns_YfF2L30xxvE4mW1_J4rFfeabtvJXveAeyoVzxd_K5nd8gEpcPdvSvZ3rPFyA6u4FtYraakFtgHiADOWNzfv_bnv-4gRnznA"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-on-surface font-bold text-sm truncate">Alex Rivera</p>
+<p class="text-on-surface-variant/60 text-xs truncate">Creative Director</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/40">expand_more</span>
+</div>
+</div>
+</aside>
+<!-- Main Chat Canvas -->
+<main class="flex-1 flex flex-col relative h-screen md:ml-64">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 bg-surface/70 backdrop-blur-xl border-b border-primary/10 shadow-[0_8px_32px_0_rgba(14,165,233,0.05)]">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="text-primary font-display text-headline-md font-bold tracking-tight">Artisan AI</span>
+<div class="h-4 w-px bg-primary/20 mx-2"></div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 cursor-pointer hover:bg-primary/10 transition-colors">
+<span class="text-xs font-bold text-primary">GPT-4o</span>
+<span class="material-symbols-outlined text-sm text-primary">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center gap-1 text-on-surface-variant/60 mr-4">
+<span class="text-[10px] font-bold uppercase tracking-widest">Status:</span>
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-xs font-medium text-on-surface">Operational</span>
+</div>
+<button class="p-2 rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Chat History Area -->
+<section class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-lg space-y-gutter custom-scrollbar">
+<!-- Hero Introduction -->
+<div class="max-w-3xl mx-auto text-center mb-xl">
+<h2 class="font-display text-display text-primary/30 mb-2">Refined Intelligence</h2>
+<p class="text-on-surface-variant/60 font-body-lg max-w-lg mx-auto">Elevating your creative process through atmospheric, lightning-fast AI assistance.</p>
+</div>
+<div class="max-w-4xl mx-auto space-y-gutter">
+<!-- AI Message -->
+<div class="flex gap-4 items-start group">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<div class="flex-1 space-y-4">
+<div class="glass-panel p-6 rounded-2xl rounded-tl-none shadow-[0_4px_20px_rgba(107,56,212,0.03)]">
+<p class="font-body-md text-on-surface leading-relaxed">
+                                Hello Alex! I've analyzed your latest project brief for the atmospheric design system. The palette you've selected—Lavender, Sky Blue, and Mint—creates a wonderful sense of cognitive clarity. 
+                            </p>
+<p class="mt-4 font-body-md text-on-surface leading-relaxed">
+                                Would you like me to generate some React component structures using these luminous glassmorphism tokens, or shall we refine the typography scale first?
+                            </p>
+</div>
+<div class="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                            </button>
+<button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+</button>
+<button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">refresh</span> Regenerate
+                            </button>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-4 items-start flex-row-reverse group">
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex-shrink-0 flex items-center justify-center text-white mt-1 shadow-md">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div class="max-w-[80%]">
+<div class="user-bubble-gradient p-6 rounded-2xl rounded-tr-none shadow-lg text-white">
+<p class="font-body-md leading-relaxed">
+                                That sounds great. Let's start with the component structures. I need a Bento Grid layout that uses the luminous glassmorphism specification (20px blur, 1px hairline borders). Can you outline the CSS for that?
+                            </p>
+</div>
+<div class="flex items-center justify-end gap-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-[10px] font-bold text-on-surface-variant/30 uppercase tracking-widest">Delivered</span>
+</div>
+</div>
+</div>
+<!-- AI Thinking State (Mockup) -->
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-1">
+<span class="material-symbols-outlined text-sm animate-spin">grading</span>
+</div>
+<div class="glass-panel px-6 py-4 rounded-2xl rounded-tl-none flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:-0.15s]"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:-0.3s]"></div>
+<span class="text-xs font-bold text-primary/60 ml-2 tracking-widest uppercase">Synthesizing Styles...</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Input Bar Section -->
+<footer class="p-margin-mobile md:p-margin-desktop pt-0 relative">
+<!-- Gradient Glow Backdrop for Input -->
+<div class="absolute inset-x-margin-desktop -top-12 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+<div class="max-w-4xl mx-auto">
+<div class="relative glass-panel rounded-2xl shadow-xl border border-primary/20 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/5 transition-all">
+<!-- Toolbar -->
+<div class="flex items-center gap-1 px-4 py-2 border-b border-primary/5">
+<button class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60" title="Attach file">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60" title="Image generator">
+<span class="material-symbols-outlined">image</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60" title="Voice input">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<div class="h-4 w-px bg-primary/10 mx-2"></div>
+<button class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60" title="Search web">
+<span class="material-symbols-outlined">language</span>
+</button>
+</div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-4 font-body-md text-on-surface resize-none min-h-[120px] placeholder:text-on-surface-variant/30" placeholder="Message Artisan AI..."></textarea>
+<!-- Submit Area -->
+<div class="flex items-center justify-between px-4 pb-4">
+<div class="flex gap-2">
+<span class="px-2 py-1 rounded bg-surface-container text-[10px] font-bold text-on-surface-variant/60">Shift + Enter to wrap</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold text-on-surface-variant/40 hover:text-on-surface transition-colors">Clear</button>
+<button class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<p class="text-center mt-4 text-[10px] text-on-surface-variant/40 uppercase tracking-[0.2em] font-bold">
+                    System Version: 4.2.0-Luminous • Response Time: 450ms
+                </p>
+</div>
+</footer>
+</main>
+<!-- Floating Atmosphere Effects -->
+<div class="fixed top-20 right-10 w-64 h-64 bg-primary/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+<div class="fixed bottom-20 left-64 w-96 h-96 bg-secondary-container/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if(el.tagName === 'A' && el.getAttribute('href') === '#') e.preventDefault();
+            });
+        });
+
+        // Textarea Auto-resize (Simple version)
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = 0;
+            this.style.height = (this.scrollHeight) + "px";
+        }
+    </script>
+</body></html>

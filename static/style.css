@@ -1,0 +1,90 @@
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.mesh-gradient {
+    background-color: #f9f9ff;
+    /* Adjusted for Light Mode Request */
+    background: radial-gradient(circle at top left, #f3e8ff 0%, transparent 40%),
+                radial-gradient(circle at top right, #e0f2fe 0%, transparent 40%),
+                radial-gradient(circle at bottom right, #fdf4ff 0%, transparent 40%),
+                radial-gradient(circle at bottom left, #fff 0%, transparent 40%),
+                #f9f9ff;
+    transition: background 0.5s ease;
+}
+/* Dark override mesh gradient if user turns on forbidden dark mode */
+.dark .mesh-gradient {
+    background-color: #111c2d;
+    background: radial-gradient(circle at top left, #2e1065 0%, transparent 40%),
+                radial-gradient(circle at top right, #0c4a6e 0%, transparent 40%),
+                radial-gradient(circle at bottom right, #4c0519 0%, transparent 40%),
+                radial-gradient(circle at bottom left, #090d16 0%, transparent 40%),
+                #111c2d;
+}
+.glass-panel {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(107, 56, 212, 0.1);
+}
+.dark .glass-panel {
+    background: rgba(17, 28, 45, 0.6);
+    border: 1px solid rgba(208, 188, 255, 0.1);
+}
+.user-bubble-gradient {
+    background: linear-gradient(135deg, #6b38d4 0%, #39b8fd 100%);
+}
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(107, 56, 212, 0.1);
+    border-radius: 10px;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(208, 188, 255, 0.1);
+}
+
+/* Focus outline improvements for accessibility */
+*:focus-visible {
+    outline: 2px solid #6b38d4 !important;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(107, 56, 212, 0.15) !important;
+}
+.dark *:focus-visible {
+    outline: 2px solid #d0bcff !important;
+    box-shadow: 0 0 0 4px rgba(208, 188, 255, 0.15) !important;
+}
+
+/* Disable focus ring/outline on the chat input area specifically */
+#chat-input:focus, #chat-input:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+/* Dynamic Font Sizes */
+.chat-size-small p {
+    font-size: 14px !important;
+}
+.chat-size-medium p {
+    font-size: 16px !important;
+}
+.chat-size-large p {
+    font-size: 18px !important;
+}
+
+/* Reduced Motion Media Query */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .animate-pulse, .animate-bounce, .animate-spin {
+        animation: none !important;
+    }
+}

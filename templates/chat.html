@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Artisan AI | Creative Intelligence</title>
+    <!-- Google Fonts & Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@300;400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-surface": "#111c2d",
+                        "on-primary": "#ffffff",
+                        "primary": "#6b38d4",
+                        "on-primary-fixed": "#23005c",
+                        "primary-container": "#8455ef",
+                        "surface-tint": "#6d3bd7",
+                        "surface-container-highest": "#d8e3fb",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#5516be",
+                        "tertiary-fixed-dim": "#ffb2b9",
+                        "on-tertiary-fixed-variant": "#891933",
+                        "on-secondary-fixed": "#001e2f",
+                        "primary-fixed-dim": "#d0bcff",
+                        "primary-fixed": "#e9ddff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "tertiary-fixed": "#ffdadc",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container": "#e7eeff",
+                        "surface": "#f9f9ff",
+                        "on-surface-variant": "#494454",
+                        "on-secondary-container": "#004666",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "outline-variant": "#cbc3d7",
+                        "surface-variant": "#d8e3fb",
+                        "surface-dim": "#cfdaf2",
+                        "inverse-surface": "#263143",
+                        "on-tertiary-fixed": "#400010",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary": "#a63047",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9ff",
+                        "on-background": "#111c2d",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "secondary-fixed": "#c9e6ff",
+                        "secondary": "#006591",
+                        "outline": "#7b7486",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#39b8fd",
+                        "inverse-primary": "#d0bcff",
+                        "tertiary-container": "#c6495e",
+                        "surface-container-high": "#dee8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Sora"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "headline-md": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body class="bg-background text-on-surface font-body-md mesh-gradient min-h-screen flex overflow-hidden">
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div id="sidebar-overlay"
+        class="fixed inset-0 bg-on-surface/20 backdrop-blur-sm z-45 hidden transition-opacity duration-300 opacity-0 pointer-events-none md:hidden">
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar"
+        class="fixed left-0 top-0 h-screen flex flex-col p-md z-50 bg-surface-container-low/80 dark:bg-surface-dim/80 backdrop-blur-2xl border-r border-primary/10 w-64 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:static md:flex">
+        <!-- Close Sidebar Button (Mobile Only) -->
+        <div class="flex md:hidden justify-end mb-2">
+            <button id="sidebar-close"
+                class="p-1 rounded-full hover:bg-primary/5 text-on-surface-variant hover:text-primary transition-colors"
+                aria-label="Close sidebar">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <!-- Sidebar Header -->
+        <div class="flex items-center gap-sm mb-lg px-xs">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">neurology</span>
+            </div>
+            <div>
+                <h1 class="font-display text-headline-md text-primary dark:text-primary-fixed-dim leading-none">Artisan
+                    AI</h1>
+                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold mt-1">Creative
+                    Intelligence</p>
+            </div>
+        </div>
+
+        <!-- New Chat Trigger -->
+        <button id="new-chat-btn"
+            class="w-full py-3 px-4 bg-primary hover:bg-primary-container text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-xl transition-all active:scale-95 mb-lg">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span>New Chat</span>
+        </button>
+
+        <!-- Sidebar Links -->
+        <nav class="flex-1 flex flex-col gap-2 custom-scrollbar overflow-y-auto">
+            <div class="text-[11px] font-bold text-on-surface-variant/40 uppercase tracking-widest px-xs mb-2">Main Menu
+            </div>
+            <a id="nav-history"
+                class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl font-bold transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined">history</span>
+                <span class="font-label-md text-label-md">History</span>
+            </a>
+            <a id="nav-models"
+                class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined">neurology</span>
+                <span class="font-label-md text-label-md">Models</span>
+            </a>
+            <button id="settings-trigger"
+                class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out text-left w-full">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-md text-label-md">Settings</span>
+            </button>
+            <a id="nav-help"
+                class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined">help</span>
+                <span class="font-label-md text-label-md">Help</span>
+            </a>
+
+            <!-- Dynamic History Section -->
+            <div class="mt-6 border-t border-primary/5 pt-4">
+                <div class="flex items-center justify-between px-xs mb-2">
+                    <span class="text-[11px] font-bold text-on-surface-variant/40 uppercase tracking-widest">Recent
+                        Conversations</span>
+                    <button id="clear-history-btn" class="text-[10px] text-error hover:underline font-semibold"
+                        title="Clear all chats">Clear All</button>
+                </div>
+                <div id="history-container" class="space-y-1 overflow-y-auto max-h-[220px] pr-1">
+                    <!-- Loaded Dynamically -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="mt-auto pt-lg border-t border-primary/5">
+            <a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 hover:bg-primary/10 rounded-xl transition-all duration-300 ease-in-out mb-4"
+                href="#">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                <span class="font-label-md text-label-md">Upgrade Pro</span>
+            </a>
+            <div class="flex items-center gap-3 px-xs">
+                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm flex-shrink-0">
+                    <img class="w-full h-full object-cover" alt="Alex Rivera Headshot"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi2O1iefIeQSAGy7hTBQ2B-fpegkgFd1ESFbJKTOYLJtm29uGIJicIWnuK7Msl97U0U46osDqAaavuU31NgvHCT04RUn6VWZf5sBvKn-GL03mW39ot7bwY45dHrfFtt6e_GpRzxTJ_PCQ6cXlAf1GiL003R0ot86zkPMimXxK-ns_YfF2L30xxvE4mW1_J4rFfeabtvJXveAeyoVzxd_K5nd8gEpcPdvSvZ3rPFyA6u4FtYraakFtgHiADOWNzfv_bnv-4gRnznA" />
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-on-surface font-bold text-sm truncate">Alex Rivera</p>
+                    <p class="text-on-surface-variant/60 text-xs truncate">Creative Director</p>
+                </div>
+                <span class="material-symbols-outlined text-on-surface-variant/40">expand_more</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Chat Canvas -->
+    <main class="flex-1 flex flex-col relative h-screen w-full">
+        <!-- Top App Bar -->
+        <header
+            class="sticky top-0 z-40 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl border-b border-primary/10 shadow-[0_8px_32px_0_rgba(14,165,233,0.05)]">
+            <div class="flex items-center gap-4">
+                <!-- Sidebar toggle button (Mobile Only) -->
+                <button id="sidebar-toggle" class="md:hidden text-primary p-1 rounded-lg hover:bg-primary/5"
+                    aria-label="Toggle sidebar menu">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <span
+                        class="text-primary dark:text-primary-fixed-dim font-display text-headline-md font-bold tracking-tight">Artisan
+                        AI</span>
+                    <div class="h-4 w-px bg-primary/20 mx-2"></div>
+
+                    <!-- Model Picker Dropdown Container -->
+                    <div class="relative">
+                        <button id="model-select-btn"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 cursor-pointer hover:bg-primary/10 transition-colors"
+                            aria-expanded="false" aria-haspopup="listbox">
+                            <span id="current-model-label"
+                                class="text-xs font-bold text-primary dark:text-primary-fixed-dim">GPT-4o</span>
+                            <span
+                                class="material-symbols-outlined text-sm text-primary dark:text-primary-fixed-dim">expand_more</span>
+                        </button>
+                        <!-- Glass Model Dropdown Menu -->
+                        <div id="model-dropdown"
+                            class="absolute left-0 mt-2 w-48 rounded-xl glass-panel shadow-lg border border-primary/10 py-1 hidden z-50">
+                            <button
+                                class="model-opt w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-primary/5 transition-colors flex justify-between items-center"
+                                data-model="GPT-4o">
+                                <span>GPT-4o</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-primary hidden check-icon">check</span>
+                            </button>
+                            <button
+                                class="model-opt w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-primary/5 transition-colors flex justify-between items-center"
+                                data-model="GPT-4o mini">
+                                <span>GPT-4o mini</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-primary hidden check-icon">check</span>
+                            </button>
+                            <button
+                                class="model-opt w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-primary/5 transition-colors flex justify-between items-center"
+                                data-model="Claude 3.5 Sonnet">
+                                <span>Claude 3.5 Sonnet</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-primary hidden check-icon">check</span>
+                            </button>
+                            <button
+                                class="model-opt w-full text-left px-4 py-2.5 text-xs font-semibold text-on-surface hover:bg-primary/5 transition-colors flex justify-between items-center"
+                                data-model="Llama 3.3">
+                                <span>Llama 3.3</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-primary hidden check-icon">check</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-1 text-on-surface-variant/60 mr-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest">Status:</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-xs font-medium text-on-surface">Operational</span>
+                </div>
+                <button class="p-2 rounded-full hover:bg-primary/5 transition-colors" aria-label="Share">
+                    <span class="material-symbols-outlined text-on-surface-variant">share</span>
+                </button>
+                <button class="p-2 rounded-full hover:bg-primary/5 transition-colors" aria-label="Account profile">
+                    <span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Chat View Container -->
+        <section id="chat-scroller"
+            class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-md space-y-gutter custom-scrollbar">
+            <!-- Hero Introduction (Toggleable) -->
+            <div id="hero-intro" class="max-w-3xl mx-auto text-center mb-md">
+                <h2 class="font-display text-display text-primary/30 dark:text-primary-fixed-dim/30 mb-2">Refined
+                    Intelligence</h2>
+                <p class="text-on-surface-variant/60 font-body-lg max-w-lg mx-auto">Elevating your creative process
+                    through atmospheric, lightning-fast AI assistance.</p>
+            </div>
+
+            <div id="messages-list" class="max-w-4xl mx-auto space-y-gutter">
+                <!-- Dynamically populated bubbles -->
+            </div>
+
+            <!-- AI Thinking State (Dynamic Toggle) -->
+            <div id="thinking-indicator" class="max-w-4xl mx-auto flex gap-4 items-start hidden">
+                <div
+                    class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-1">
+                    <span class="material-symbols-outlined text-sm animate-spin">grading</span>
+                </div>
+                <div class="glass-panel px-6 py-4 rounded-2xl rounded-tl-none flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:-0.15s]"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:-0.3s]"></div>
+                    <span class="text-xs font-bold text-primary/60 ml-2 tracking-widest uppercase">Synthesizing
+                        Styles...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Input Bar Section -->
+        <footer class="px-margin-mobile md:px-margin-desktop pb-6 pt-0 relative w-full">
+            <!-- Gradient Glow Backdrop for Input -->
+            <div
+                class="absolute inset-x-0 -top-12 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none">
+            </div>
+            <div class="max-w-4xl mx-auto relative z-10">
+                <div
+                    class="relative glass-panel rounded-2xl shadow-xl border border-primary/20 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/5 transition-all">
+                    <!-- Toolbar -->
+                    <div class="flex flex-wrap items-center justify-between px-4 py-2 border-b border-primary/5 gap-2">
+                        <div class="flex items-center gap-1">
+                            <button
+                                class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60"
+                                title="Attach file" aria-label="Attach file">
+                                <span class="material-symbols-outlined">attach_file</span>
+                            </button>
+                            <button
+                                class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60"
+                                title="Image generator" aria-label="Image generator">
+                                <span class="material-symbols-outlined">image</span>
+                            </button>
+                            <button
+                                class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60"
+                                title="Voice input" aria-label="Voice input">
+                                <span class="material-symbols-outlined">mic</span>
+                            </button>
+                            <div class="h-4 w-px bg-primary/10 mx-2"></div>
+                            <button
+                                class="p-2 rounded-lg hover:bg-primary/5 transition-colors text-on-surface-variant/60"
+                                title="Search web" aria-label="Search web">
+                                <span class="material-symbols-outlined">language</span>
+                            </button>
+                        </div>
+                        <!-- Quick action status display on mobile/small desktop -->
+                        <div
+                            class="text-[10px] bg-primary/5 text-primary px-2.5 py-1 rounded font-bold uppercase tracking-widest">
+                            Context Loaded
+                        </div>
+                    </div>
+                    <!-- Input Box -->
+                    <textarea id="chat-input"
+                        class="w-full bg-transparent border-none focus:ring-0 py-3 px-4 font-body-md text-on-surface resize-none min-h-[56px] placeholder:text-on-surface-variant/30"
+                        placeholder="Message Artisan AI... (type 'error' to simulate errors)"></textarea>
+
+                    <!-- Submit Area -->
+                    <div class="flex items-center justify-between px-4 pb-4">
+                        <div class="flex gap-2">
+                            <span
+                                class="px-2 py-1 rounded bg-surface-container text-[10px] font-bold text-on-surface-variant/60">Shift
+                                + Enter to wrap</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <button id="clear-chat-input"
+                                class="text-xs font-bold text-on-surface-variant/40 hover:text-on-surface transition-colors">Clear</button>
+
+                            <!-- Toggleable Send / Stop button -->
+                            <button id="action-btn"
+                                class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all"
+                                aria-label="Send message">
+                                <span id="action-btn-icon" class="material-symbols-outlined">send</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center mt-4 text-[10px] text-on-surface-variant/40 uppercase tracking-[0.2em] font-bold">
+                    System Version: 4.2.0-Luminous • Response Time: 450ms
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Floating Atmosphere Effects -->
+    <div class="fixed top-20 right-10 w-64 h-64 bg-primary/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+    <div
+        class="fixed bottom-20 left-64 w-96 h-96 bg-secondary-container/5 blur-[120px] rounded-full -z-10 pointer-events-none">
+    </div>
+
+    <!-- Settings Modal Panel -->
+    <div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" role="dialog"
+        aria-modal="true" aria-labelledby="modal-title">
+        <div id="settings-backdrop" class="absolute inset-0 bg-on-surface/20 backdrop-blur-sm"></div>
+        <div class="relative w-full max-w-md p-6 rounded-2xl glass-panel shadow-2xl border border-primary/20 m-4 transition-transform duration-300 scale-95 opacity-0 duration-300 ease-out transform"
+            id="settings-content">
+            <!-- Close Settings Button -->
+            <button id="settings-close"
+                class="absolute top-4 right-4 p-1 text-on-surface-variant hover:text-primary transition-colors"
+                aria-label="Close settings">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h3 id="modal-title" class="font-display text-headline-md text-primary mb-6">Settings</h3>
+
+            <div class="space-y-6">
+                <!-- Theme Toggle with Spec Alert warning -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label for="theme-toggle"
+                            class="text-xs font-bold text-on-surface-variant/80 uppercase tracking-wider">Interface
+                            Theme</label>
+                        <button id="theme-toggle"
+                            class="w-12 h-6 rounded-full bg-surface-container relative transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
+                            aria-checked="false" role="switch">
+                            <span id="theme-toggle-dot"
+                                class="w-5 h-5 rounded-full bg-primary absolute top-0.5 left-0.5 transition-all transform duration-300"></span>
+                        </button>
+                    </div>
+                    <!-- Inline Warn Banner -->
+                    <div id="theme-warning"
+                        class="hidden mt-2 p-3 rounded-xl bg-error-container text-on-error-container border border-error/15 text-xs transition-opacity duration-300">
+                        <div class="flex gap-2 items-start">
+                            <span class="material-symbols-outlined text-sm mt-0.5">warning</span>
+                            <p><span class="font-bold">Caution:</span> Dark surfaces are strictly prohibited by the
+                                Luminous Ether specification to maintain visual transparency and light-refracted
+                                clarity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font Size selector -->
+                <div>
+                    <label class="block text-xs font-bold text-on-surface-variant/80 uppercase tracking-wider mb-2">Chat
+                        Font Size</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button
+                            class="font-size-opt py-2 px-3 rounded-xl border border-primary/10 text-xs font-bold hover:bg-primary/5 transition-all"
+                            data-size="small">Small</button>
+                        <button
+                            class="font-size-opt py-2 px-3 rounded-xl border-2 border-primary text-primary text-xs font-bold bg-primary/5 transition-all"
+                            data-size="medium">Medium</button>
+                        <button
+                            class="font-size-opt py-2 px-3 rounded-xl border border-primary/10 text-xs font-bold hover:bg-primary/5 transition-all"
+                            data-size="large">Large</button>
+                    </div>
+                </div>
+
+                <!-- Temperature Slider -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label for="temp-slider"
+                            class="text-xs font-bold text-on-surface-variant/80 uppercase tracking-wider">Model
+                            Temperature</label>
+                        <span id="temp-val" class="text-xs font-bold text-primary">0.7</span>
+                    </div>
+                    <input type="range" id="temp-slider" min="0" max="1" step="0.1" value="0.7"
+                        class="w-full h-1 bg-surface-container rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sliding Toast Notification Stack -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm w-full px-4 sm:px-0">
+    </div>
+
+    <!-- Client App Script -->
+    <script>
+        // App State Configuration
+        const state = {
+            conversations: [
+                {
+                    id: "chat-1",
+                    title: "Medical Consultation",
+                    timestamp: "2 hours ago",
+                    messages: [
+                        { role: "assistant", text: "Hello Alex! I am your Medical Assistant. I can answer your health questions and analyze symptoms using your uploaded reference material. How can I help you today?" }
+                    ]
+                },
+                {
+                    id: "chat-2",
+                    title: "Luminous Glassmorphism spec",
+                    timestamp: "Yesterday",
+                    messages: [
+                        { role: "assistant", text: "Here is the specifications document outlining transparency, elevation shadow values, and shapes radius parameters." }
+                    ]
+                },
+                {
+                    id: "chat-3",
+                    title: "React Component Scaffolding",
+                    timestamp: "3 days ago",
+                    messages: [
+                        { role: "user", text: "Can you provide a setup guide for Next.js with tailwind.config overrides?" },
+                        { role: "assistant", text: "Absolutely, you need to map spacing variables inside the theme extend block to reflect the Luminous Ether layout." }
+                    ]
+                }
+            ],
+            activeConversationId: "chat-1",
+            isGenerating: false,
+            settings: {
+                theme: "light",
+                fontSize: "medium",
+                temperature: 0.7
+            },
+            streamInterval: null
+        };
+
+        // DOM References
+        const sidebar = document.getElementById("sidebar");
+        const sidebarOverlay = document.getElementById("sidebar-overlay");
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+        const sidebarClose = document.getElementById("sidebar-close");
+
+        const modelSelectBtn = document.getElementById("model-select-btn");
+        const modelDropdown = document.getElementById("model-dropdown");
+        const currentModelLabel = document.getElementById("current-model-label");
+
+        const historyContainer = document.getElementById("history-container");
+        const clearHistoryBtn = document.getElementById("clear-history-btn");
+        const newChatBtn = document.getElementById("new-chat-btn");
+
+        const chatScroller = document.getElementById("chat-scroller");
+        const heroIntro = document.getElementById("hero-intro");
+        const messagesList = document.getElementById("messages-list");
+        const thinkingIndicator = document.getElementById("thinking-indicator");
+
+        const chatInput = document.getElementById("chat-input");
+        const clearChatInput = document.getElementById("clear-chat-input");
+        const actionBtn = document.getElementById("action-btn");
+        const actionBtnIcon = document.getElementById("action-btn-icon");
+
+        const settingsTrigger = document.getElementById("settings-trigger");
+        const settingsModal = document.getElementById("settings-modal");
+        const settingsContent = document.getElementById("settings-content");
+        const settingsClose = document.getElementById("settings-close");
+        const settingsBackdrop = document.getElementById("settings-backdrop");
+
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeToggleDot = document.getElementById("theme-toggle-dot");
+        const themeWarning = document.getElementById("theme-warning");
+        const tempSlider = document.getElementById("temp-slider");
+        const tempVal = document.getElementById("temp-val");
+        const toastContainer = document.getElementById("toast-container");
+
+        // Initialize UI
+        function init() {
+            renderHistory();
+            loadConversation(state.activeConversationId);
+            applySettings();
+            setupEventListeners();
+        }
+
+        // Settings Applicator
+        function applySettings() {
+            // Theme (Light/Dark Override)
+            if (state.settings.theme === "dark") {
+                document.documentElement.classList.add("dark");
+                themeToggle.ariaChecked = "true";
+                themeToggleDot.classList.add("translate-x-6");
+                themeToggle.classList.remove("bg-surface-container");
+                themeToggle.classList.add("bg-primary");
+                themeWarning.classList.remove("hidden");
+            } else {
+                document.documentElement.classList.remove("dark");
+                themeToggle.ariaChecked = "false";
+                themeToggleDot.classList.remove("translate-x-6");
+                themeToggle.classList.add("bg-surface-container");
+                themeToggle.classList.remove("bg-primary");
+                themeWarning.classList.add("hidden");
+            }
+
+            // Font Size Adjustments
+            messagesList.classList.remove("chat-size-small", "chat-size-medium", "chat-size-large");
+            messagesList.classList.add(`chat-size-${state.settings.fontSize}`);
+
+            // Update Font Size UI Buttons
+            document.querySelectorAll(".font-size-opt").forEach(btn => {
+                if (btn.dataset.size === state.settings.fontSize) {
+                    btn.classList.add("border-2", "border-primary", "text-primary", "bg-primary/5");
+                    btn.classList.remove("border-primary/10");
+                } else {
+                    btn.classList.remove("border-2", "border-primary", "text-primary", "bg-primary/5");
+                    btn.classList.add("border-primary/10");
+                }
+            });
+
+            // Temperature Slider
+            tempSlider.value = state.settings.temperature;
+            tempVal.innerText = state.settings.temperature;
+        }
+
+        // Toggle Sidebar Navigation on mobile
+        function toggleSidebar(show) {
+            if (show) {
+                sidebar.classList.remove("-translate-x-full");
+                sidebarOverlay.classList.remove("hidden");
+                setTimeout(() => {
+                    sidebarOverlay.classList.add("opacity-100");
+                    sidebarOverlay.classList.remove("pointer-events-none");
+                }, 50);
+            } else {
+                sidebar.classList.add("-translate-x-full");
+                sidebarOverlay.classList.remove("opacity-100");
+                sidebarOverlay.classList.add("pointer-events-none");
+                setTimeout(() => {
+                    sidebarOverlay.classList.add("hidden");
+                }, 300);
+            }
+        }
+
+        // Dropdown Model Picker toggler
+        function toggleModelDropdown(show) {
+            if (show) {
+                modelDropdown.classList.remove("hidden");
+                modelSelectBtn.ariaExpanded = "true";
+            } else {
+                modelDropdown.classList.add("hidden");
+                modelSelectBtn.ariaExpanded = "false";
+            }
+        }
+
+        // Renders the Conversation History list in Sidebar
+        function renderHistory() {
+            historyContainer.innerHTML = "";
+
+            if (state.conversations.length === 0) {
+                historyContainer.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-6 px-4 text-center">
+                    <span class="material-symbols-outlined text-on-surface-variant/30 text-3xl mb-2">forum</span>
+                    <p class="text-xs font-medium text-on-surface-variant/60">No recent conversations</p>
+                </div>
+            `;
+                return;
+            }
+
+            state.conversations.forEach(chat => {
+                const isActive = chat.id === state.activeConversationId;
+                const item = document.createElement("button");
+                item.className = `w-full flex flex-col gap-1 px-4 py-2.5 rounded-xl transition-all text-left group relative ${isActive
+                        ? "bg-primary/10 text-primary border border-primary/10"
+                        : "text-on-surface hover:bg-primary/5"
+                    }`;
+                item.innerHTML = `
+                <span class="text-xs font-semibold truncate pr-4">${chat.title}</span>
+                <span class="text-[10px] text-on-surface-variant/40 group-hover:text-primary/60 transition-colors">${chat.timestamp}</span>
+                <button class="absolute right-2 top-3 opacity-0 group-hover:opacity-100 p-0.5 rounded-lg hover:bg-error/10 hover:text-error transition-all" data-delete-id="${chat.id}" aria-label="Delete chat">
+                    <span class="material-symbols-outlined text-sm">delete</span>
+                </button>
+            `;
+                item.addEventListener("click", (e) => {
+                    if (e.target.closest("[data-delete-id]")) {
+                        e.stopPropagation();
+                        deleteConversation(chat.id);
+                    } else {
+                        loadConversation(chat.id);
+                        if (window.innerWidth < 768) toggleSidebar(false);
+                    }
+                });
+                historyContainer.appendChild(item);
+            });
+        }
+
+        // Loading a specific conversation to active view
+        function loadConversation(id) {
+            state.activeConversationId = id;
+            renderHistory();
+
+            const activeChat = state.conversations.find(c => c.id === id);
+            if (!activeChat || activeChat.messages.length === 0) {
+                heroIntro.classList.remove("hidden");
+                messagesList.innerHTML = "";
+                return;
+            }
+
+            heroIntro.classList.add("hidden");
+            messagesList.innerHTML = "";
+
+            activeChat.messages.forEach(msg => {
+                appendBubbleDOM(msg.role, msg.text);
+            });
+
+            scrollToBottom();
+        }
+
+        // Delete conversation from sidebar history
+        function deleteConversation(id) {
+            state.conversations = state.conversations.filter(c => c.id !== id);
+            if (state.activeConversationId === id) {
+                state.activeConversationId = state.conversations.length > 0 ? state.conversations[0].id : null;
+            }
+            renderHistory();
+            if (state.activeConversationId) {
+                loadConversation(state.activeConversationId);
+            } else {
+                messagesList.innerHTML = "";
+                heroIntro.classList.remove("hidden");
+            }
+            showToast("Conversation deleted");
+        }
+
+        // Appending individual speech bubble cards into the list
+        function appendBubbleDOM(role, text) {
+            const bubble = document.createElement("div");
+            if (role === "assistant") {
+                bubble.className = "flex gap-4 items-start group";
+                bubble.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-1">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">neurology</span>
+                </div>
+                <div class="flex-1 space-y-4 max-w-[85%]">
+                    <div class="glass-panel p-4 sm:p-6 rounded-2xl rounded-tl-none shadow-[0_4px_20px_rgba(107,56,212,0.03)]">
+                        <p class="font-body-md text-on-surface leading-relaxed whitespace-pre-wrap">${text}</p>
+                    </div>
+                    <div class="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}').then(() => alert('Copied!'))">
+                            <span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                        </button>
+                        <button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-sm">thumb_up</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            } else {
+                bubble.className = "flex gap-4 items-start flex-row-reverse group";
+                bubble.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-secondary-container flex-shrink-0 flex items-center justify-center text-white mt-1 shadow-md">
+                    <span class="material-symbols-outlined text-sm">person</span>
+                </div>
+                <div class="max-w-[80%]">
+                    <div class="user-bubble-gradient p-4 sm:p-6 rounded-2xl rounded-tr-none shadow-lg text-white">
+                        <p class="font-body-md leading-relaxed whitespace-pre-wrap">${text}</p>
+                    </div>
+                    <div class="flex items-center justify-end gap-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-[10px] font-bold text-on-surface-variant/30 uppercase tracking-widest">Delivered</span>
+                    </div>
+                </div>
+            `;
+            }
+            messagesList.appendChild(bubble);
+        }
+
+        // Scroll chat scroller to latest bubble
+        function scrollToBottom() {
+            chatScroller.scrollTop = chatScroller.scrollHeight;
+        }
+
+        // Toast alert builder
+        function showToast(message, isError = false) {
+            const toast = document.createElement("div");
+            toast.className = `flex items-center gap-3 px-4 py-3 border rounded-xl shadow-lg transition-all duration-300 ease-out transform translate-y-2 opacity-0 ${isError
+                    ? "bg-error-container text-on-error-container border-error/20"
+                    : "bg-surface-container-highest text-on-surface border-primary/10"
+                }`;
+
+            toast.innerHTML = `
+            <span class="material-symbols-outlined text-lg ${isError ? 'text-error' : 'text-primary'}">${isError ? 'error' : 'info'}</span>
+            <span class="text-xs font-semibold flex-1">${message}</span>
+            <button class="opacity-70 hover:opacity-100 transition-opacity" aria-label="Close notification">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+        `;
+
+            toast.querySelector("button").addEventListener("click", () => {
+                toast.classList.add("opacity-0", "translate-y-2");
+                setTimeout(() => toast.remove(), 300);
+            });
+
+            toastContainer.appendChild(toast);
+
+            // Animation entry trigger
+            setTimeout(() => {
+                toast.classList.remove("opacity-0", "translate-y-2");
+            }, 10);
+
+            // Auto dismiss toast after 4 seconds
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.classList.add("opacity-0", "translate-y-2");
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, 4000);
+        }
+
+        // Clear and start a fresh chat board
+        function resetChat() {
+            state.activeConversationId = null;
+            messagesList.innerHTML = "";
+            heroIntro.classList.remove("hidden");
+            renderHistory();
+            chatInput.value = "";
+            chatInput.style.height = "auto";
+            showToast("New chat workspace created");
+        }
+
+        // Simulated AI response streamer connected to Flask backend
+        function handleMessageSubmit() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add user message to active view
+            appendBubbleDOM("user", text);
+            chatInput.value = "";
+            chatInput.style.height = "auto";
+            heroIntro.classList.add("hidden");
+            scrollToBottom();
+
+            // Check if active session exists, else create new conversation context
+            let currentChat = state.conversations.find(c => c.id === state.activeConversationId);
+            if (!currentChat) {
+                const newId = "chat-" + Date.now();
+                currentChat = {
+                    id: newId,
+                    title: text.substring(0, 22) + (text.length > 22 ? "..." : ""),
+                    timestamp: "Just now",
+                    messages: []
+                };
+                state.conversations.unshift(currentChat);
+                state.activeConversationId = newId;
+                renderHistory();
+            }
+
+            currentChat.messages.push({ role: "user", text: text });
+
+            // Check for test errors immediately
+            if (text.toLowerCase().includes("error") || text.toLowerCase().includes("fail")) {
+                setTimeout(() => {
+                    showToast("Connection failed, try again", true);
+                }, 600);
+                return;
+            }
+
+            // Show thinking state loader
+            toggleThinkingState(true);
+
+            // Turn Send icon button to Stop square button
+            toggleGeneratingState(true);
+
+            // Prepare request payload
+            const formData = new FormData();
+            formData.append("msg", text);
+
+            // Fetch response from Flask RAG backend
+            fetch("/get", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error("Backend connection failed");
+                    return response.text();
+                })
+                .then(replyText => {
+                    // Dismiss thinking loader
+                    toggleThinkingState(false);
+
+                    // If user stopped the stream while fetching
+                    if (!state.isGenerating) return;
+
+                    // Append container block for streamed message
+                    const bubble = document.createElement("div");
+                    bubble.className = "flex gap-4 items-start group";
+                    bubble.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-1">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">neurology</span>
+                </div>
+                <div class="flex-1 space-y-4 max-w-[85%]">
+                    <div class="glass-panel p-4 sm:p-6 rounded-2xl rounded-tl-none shadow-[0_4px_20px_rgba(107,56,212,0.03)]">
+                        <p class="font-body-md text-on-surface leading-relaxed whitespace-pre-wrap" id="streaming-text"></p>
+                    </div>
+                    <div class="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity" id="streaming-actions">
+                        <button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors" id="copy-streamed-btn">
+                            <span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                        </button>
+                        <button class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant/40 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-sm">thumb_up</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+                    messagesList.appendChild(bubble);
+                    scrollToBottom();
+
+                    const textEl = document.getElementById("streaming-text");
+                    const words = replyText.split(" ");
+                    let wordIndex = 0;
+
+                    state.streamInterval = setInterval(() => {
+                        if (wordIndex < words.length) {
+                            textEl.innerText += (wordIndex === 0 ? "" : " ") + words[wordIndex];
+                            wordIndex++;
+                            scrollToBottom();
+                        } else {
+                            finalizeStream(currentChat, textEl.innerText);
+                        }
+                    }, 40); // 40ms interval for smooth fast typing
+                })
+                .catch(err => {
+                    toggleThinkingState(false);
+                    toggleGeneratingState(false);
+                    showToast("Connection failed, try again", true);
+                    console.error("RAG Error:", err);
+                });
+        }
+
+        // Stopping or completing the streaming state
+        function finalizeStream(chat, text) {
+            clearInterval(state.streamInterval);
+            state.streamInterval = null;
+            toggleGeneratingState(false);
+
+            // Save completed AI reply to array
+            if (chat) {
+                chat.messages.push({ role: "assistant", text: text });
+            }
+
+            // Wire copy button action
+            const copyBtn = document.getElementById("copy-streamed-btn");
+            if (copyBtn) {
+                copyBtn.addEventListener("click", () => {
+                    navigator.clipboard.writeText(text).then(() => showToast("Copied to clipboard"));
+                });
+                copyBtn.removeAttribute("id"); // Remove temp ID
+            }
+
+            const textEl = document.getElementById("streaming-text");
+            if (textEl) textEl.removeAttribute("id"); // Remove temp ID
+        }
+
+        // Stop active generation
+        function stopGeneration() {
+            if (state.streamInterval) {
+                clearInterval(state.streamInterval);
+                state.streamInterval = null;
+            }
+
+            const textEl = document.getElementById("streaming-text");
+            const partialText = textEl ? textEl.innerText : "Generation halted.";
+
+            let currentChat = state.conversations.find(c => c.id === state.activeConversationId);
+            finalizeStream(currentChat, partialText + " [Stopped by user]");
+            showToast("Generation stopped");
+        }
+
+        // Toggle Action Button status (Send vs Stop)
+        function toggleGeneratingState(generating) {
+            state.isGenerating = generating;
+            if (generating) {
+                actionBtnIcon.innerText = "square"; // stop square symbol
+                actionBtn.ariaLabel = "Stop generating";
+                actionBtn.classList.remove("bg-primary");
+                actionBtn.classList.add("bg-error");
+            } else {
+                actionBtnIcon.innerText = "send";
+                actionBtn.ariaLabel = "Send message";
+                actionBtn.classList.remove("bg-error");
+                actionBtn.classList.add("bg-primary");
+            }
+        }
+
+        // Toggle AI loader panel
+        function toggleThinkingState(show) {
+            if (show) {
+                thinkingIndicator.classList.remove("hidden");
+                scrollToBottom();
+            } else {
+                thinkingIndicator.classList.add("hidden");
+            }
+        }
+
+        // Toggle settings modal viewport display
+        function toggleSettingsModal(show) {
+            if (show) {
+                settingsModal.classList.remove("hidden");
+                setTimeout(() => {
+                    settingsContent.classList.remove("scale-95", "opacity-0");
+                    settingsContent.classList.add("scale-100", "opacity-100");
+                }, 50);
+            } else {
+                settingsContent.classList.remove("scale-100", "opacity-100");
+                settingsContent.classList.add("scale-95", "opacity-0");
+                setTimeout(() => {
+                    settingsModal.classList.add("hidden");
+                }, 300);
+            }
+        }
+
+        // Wiring DOM Actions and Listeners
+        function setupEventListeners() {
+            // Mobile Navigation drawer triggers
+            sidebarToggle.addEventListener("click", () => toggleSidebar(true));
+            sidebarClose.addEventListener("click", () => toggleSidebar(false));
+            sidebarOverlay.addEventListener("click", () => toggleSidebar(false));
+
+            // Model selector picker dropdown toggles
+            modelSelectBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const isHidden = modelDropdown.classList.contains("hidden");
+                toggleModelDropdown(isHidden);
+            });
+
+            document.querySelectorAll(".model-opt").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const selectedModel = btn.dataset.model;
+                    currentModelLabel.innerText = selectedModel;
+
+                    // Toggle active checks
+                    document.querySelectorAll(".model-opt").forEach(b => {
+                        const check = b.querySelector(".check-icon");
+                        if (b === btn) {
+                            check.classList.remove("hidden");
+                        } else {
+                            check.classList.add("hidden");
+                        }
+                    });
+
+                    toggleModelDropdown(false);
+                    showToast(`Model switched to ${selectedModel}`);
+                });
+            });
+
+            // Hide model dropdown on outside click
+            document.addEventListener("click", () => {
+                toggleModelDropdown(false);
+            });
+
+            // Modal triggers
+            settingsTrigger.addEventListener("click", () => {
+                toggleSettingsModal(true);
+                if (window.innerWidth < 768) toggleSidebar(false);
+            });
+            settingsClose.addEventListener("click", () => toggleSettingsModal(false));
+            settingsBackdrop.addEventListener("click", () => toggleSettingsModal(false));
+
+            // Settings font option selector
+            document.querySelectorAll(".font-size-opt").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    state.settings.fontSize = btn.dataset.size;
+                    applySettings();
+                    showToast(`Font size updated to ${state.settings.fontSize}`);
+                });
+            });
+
+            // Settings Temperature Slider logic
+            tempSlider.addEventListener("input", (e) => {
+                state.settings.temperature = parseFloat(e.target.value);
+                tempVal.innerText = state.settings.temperature;
+            });
+
+            // Settings Theme Toggle (with caution warning alert box display)
+            themeToggle.addEventListener("click", () => {
+                state.settings.theme = state.settings.theme === "light" ? "dark" : "light";
+                applySettings();
+            });
+
+            // History Actions
+            clearHistoryBtn.addEventListener("click", () => {
+                if (confirm("Are you sure you want to clear all conversations?")) {
+                    state.conversations = [];
+                    state.activeConversationId = null;
+                    messagesList.innerHTML = "";
+                    heroIntro.classList.remove("hidden");
+                    renderHistory();
+                    showToast("All conversations cleared");
+                }
+            });
+
+            newChatBtn.addEventListener("click", resetChat);
+
+            // Input Actions
+            clearChatInput.addEventListener("click", () => {
+                chatInput.value = "";
+                chatInput.style.height = "auto";
+            });
+
+            actionBtn.addEventListener("click", () => {
+                if (state.isGenerating) {
+                    stopGeneration();
+                } else {
+                    handleMessageSubmit();
+                }
+            });
+
+            // Textarea adjustments & wrapping keys
+            chatInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleMessageSubmit();
+                }
+            });
+
+            chatInput.addEventListener("input", function () {
+                this.style.height = "auto";
+                this.style.height = (this.scrollHeight) + "px";
+            });
+        }
+
+        // Run loader
+        document.addEventListener("DOMContentLoaded", init);
+    </script>
+</body>
+
+</html>
