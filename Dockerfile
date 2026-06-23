@@ -5,6 +5,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install -r requirements.txt
+# Install CPU-only PyTorch first (saves ~1.5GB vs full torch)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Install remaining dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["python3", "app.py"]
