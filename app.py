@@ -13,7 +13,7 @@ import os
 load_dotenv()
 
 os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
-os.environ["PINECONE_API_KEY"] = os.getenv("PINE_CONE_KEY")
+os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY") or os.getenv("PINE_CONE_KEY")
 
 # load existing index
 embedding=download_embedding()
